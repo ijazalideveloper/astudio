@@ -1,0 +1,20 @@
+module.exports = {
+    content: [
+      './pages/**/*.{js,ts,jsx,tsx}',
+      './components/**/*.{js,ts,jsx,tsx}',
+    ],
+    theme: {
+      extend: {
+        colors: {
+          black: '#322625',
+          grey: '#ebebeb',
+          blue: '#c0e3e5',
+          yellow: '#fdc936',
+        },
+        fontFamily: {
+          sans: ['Neutra Text', 'sans-serif'],
+        },
+      },
+    },
+    plugins: [],
+  };
