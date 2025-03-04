@@ -1,7 +1,20 @@
-/* @import "tailwindcss"; */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Neutra Text';
+  src: url('/fonts/NeutraText-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neutra Text';
+  src: url('/fonts/NeutraText-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --font-sans: var(--font-geist-sans);
@@ -23,5 +36,5 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Neutra Text', sans-serif;
 }
