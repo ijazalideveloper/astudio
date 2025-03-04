@@ -19,9 +19,11 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-bold mb-[15px]">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={id} className="block text-sm font-bold mb-[15px]">
+          {label}
+        </label>
+      )}
       <input
         id={id}
         type={type}
@@ -34,4 +36,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input
+export default Input;

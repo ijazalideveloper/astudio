@@ -44,4 +44,6 @@ const MockTableData = [
   },
 ];
 
-export { MockTableColumns, MockTableData };
+const PageOptionMockData = [5, 10, 20];
+
+export { MockTableColumns, MockTableData, PageOptionMockData };
