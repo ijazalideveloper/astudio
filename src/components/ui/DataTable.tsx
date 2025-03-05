@@ -19,7 +19,22 @@ const DataTable: React.FC<DataTableProps> = ({
   isLoading,
   clientSearchTerm = "",
 }) => {
-  console.log("clientSearchTerm", clientSearchTerm);
+  console.log("clientSearchTerm", clientSearchTerm)
+  
+  const filteredData = clientSearchTerm
+    ? data.filter((item) => {
+        return Object.values(item).some((value) => {
+          if (value === null || value === undefined) return false;
+          if (typeof value === 'object') {
+            return Object.values(value).some(
+              (v) => v && v.toString().toLowerCase().includes(clientSearchTerm.toLowerCase())
+            );
+          }
+          return value.toString().toLowerCase().includes(clientSearchTerm.toLowerCase());
+        });
+      })
+    : data;
+  
   if (isLoading) {
     return (
       <div className="table-container">
@@ -33,7 +48,7 @@ const DataTable: React.FC<DataTableProps> = ({
     );
   }
 
-  if (data.length === 0) {
+  if (filteredData.length === 0) {
     return (
       <div className="table-container">
         <div className="flex justify-center items-center p-8">
@@ -56,7 +71,7 @@ const DataTable: React.FC<DataTableProps> = ({
           </tr>
         </thead>
         <tbody>
-          {data.map((row, rowIndex) => (
+          {filteredData.map((row, rowIndex) => (
             <tr key={row.id || rowIndex} className="table-row border-b">
               {columns.map((column) => (
                 <td
