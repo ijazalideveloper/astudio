@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { User, UsersResponse } from "../../../types/user";
 import { fetchUsers } from "../../../services/usersService";
+import { MAX_PAGE_SIZE } from "@/utils/default";
 
 interface UsersState {
   users: User[];
@@ -15,7 +16,7 @@ const initialState: UsersState = {
   users: [],
   total: 0,
   skip: 0,
-  limit: 5,
+  limit: MAX_PAGE_SIZE,
   loading: false,
   error: null,
 };
@@ -36,9 +37,12 @@ const usersSlice = createSlice({
       state.users = [];
       state.total = 0;
       state.skip = 0;
-      state.limit = 5;
+      state.limit = MAX_PAGE_SIZE;
       state.loading = false;
       state.error = null;
+    },
+    setSkip: (state, action: PayloadAction<number>) => {
+      state.skip = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -64,5 +68,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { resetUsers } = usersSlice.actions;
+export const { resetUsers, setSkip } = usersSlice.actions;
 export default usersSlice.reducer;

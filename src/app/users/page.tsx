@@ -9,13 +9,15 @@ import { PageOptionMockData, USER_TABLE_COLUMNS } from "@/contants/data";
 import useFilters from "@/hooks/useFilters";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
-import { fetchUsersThunk } from "@/redux/features/users/usersSlice";
+import { fetchUsersThunk, setSkip } from "@/redux/features/users/usersSlice";
+import usePagination from "@/hooks/usePagination";
+import { MAX_PAGE_SIZE } from "@/utils/default";
 
 export default function Users() {
   const dispatch = useAppDispatch();
-  const { users, total, skip, limit, loading } = useAppSelector(
-    (state) => state.users
-  );
+  const { users, loading } = useAppSelector((state) => state.users);
+
+  const { total, limit, skip, handlePageChange } = usePagination();
 
   useEffect(() => {
     dispatch(fetchUsersThunk({ skip, limit }));
@@ -27,7 +29,7 @@ export default function Users() {
     age: "",
     gender: "",
     searchTerm: "",
-    pageSize: 5,
+    pageSize: MAX_PAGE_SIZE,
   });
 
   console.log("Users Response", users);
@@ -81,7 +83,12 @@ export default function Users() {
         data={users}
         isLoading={loading}
       />
-      <Pagination></Pagination>
+      <Pagination
+        total={total}
+        limit={limit}
+        skip={skip}
+        onPageChange={handlePageChange}
+      />
     </Layout>
   );
 }
