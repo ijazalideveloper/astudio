@@ -48,8 +48,6 @@ export default function Users() {
     dispatch(setClientSearchTerm(term));
   };
 
-  console.log("Users Response", users);
-
   return (
     <Layout>
       <h1 className="text-3xl font-bold mb-[20px]">User Page</h1>

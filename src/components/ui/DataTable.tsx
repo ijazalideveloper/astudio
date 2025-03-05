@@ -19,8 +19,7 @@ const DataTable: React.FC<DataTableProps> = ({
   isLoading,
   clientSearchTerm = "",
 }) => {
-  console.log("clientSearchTerm", clientSearchTerm)
-  
+
   const filteredData = clientSearchTerm
     ? data.filter((item) => {
         return Object.values(item).some((value) => {
