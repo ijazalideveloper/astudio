@@ -10,9 +10,16 @@ interface DataTableProps {
   columns: Column[];
   data: any[];
   isLoading: boolean;
+  clientSearchTerm?: string;
 }
 
-const DataTable: React.FC<DataTableProps> = ({ columns, data, isLoading }) => {
+const DataTable: React.FC<DataTableProps> = ({
+  columns,
+  data,
+  isLoading,
+  clientSearchTerm = "",
+}) => {
+  console.log("clientSearchTerm", clientSearchTerm);
   if (isLoading) {
     return (
       <div className="table-container">

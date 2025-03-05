@@ -5,7 +5,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Pagination from "@/components/ui/Pagination";
 import Search from "@/components/ui/SearchBar";
-import { PageOptionMockData } from "@/contants/data";
+import { PAGE_OPTION_MOCK_DATA } from "@/contants/data";
 import useFilters from "@/hooks/useFilters";
 
 export default function Products() {
@@ -48,7 +48,7 @@ export default function Products() {
         <Dropdown
           id="pageSize"
           label="Page Size"
-          options={PageOptionMockData}
+          options={PAGE_OPTION_MOCK_DATA}
           value={filters.pageSize}
           onChange={(value) => onFilterChange("pageSize", value)}
         />

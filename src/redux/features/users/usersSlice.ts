@@ -10,6 +10,7 @@ interface UsersState {
   limit: number;
   loading: boolean;
   error: string | null;
+  clientSearchTerm: string;
 }
 
 const initialState: UsersState = {
@@ -19,6 +20,7 @@ const initialState: UsersState = {
   limit: MAX_PAGE_SIZE,
   loading: false,
   error: null,
+  clientSearchTerm: "",
 };
 
 export const fetchUsersThunk = createAsyncThunk(
@@ -44,6 +46,13 @@ const usersSlice = createSlice({
     setSkip: (state, action: PayloadAction<number>) => {
       state.skip = action.payload;
     },
+    setLimit: (state, action: PayloadAction<number>) => {
+      state.limit = action.payload;
+      state.skip = 0;
+    },
+    setClientSearchTerm: (state, action: PayloadAction<string>) => {
+      state.clientSearchTerm = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,5 +77,6 @@ const usersSlice = createSlice({
   },
 });
 
-export const { resetUsers, setSkip } = usersSlice.actions;
+export const { resetUsers, setSkip, setLimit, setClientSearchTerm } =
+  usersSlice.actions;
 export default usersSlice.reducer;

@@ -60,11 +60,11 @@ const USER_TABLE_COLUMNS = [
   { id: "eyeColor", label: "Eye Color" },
 ];
 
-const PageOptionMockData = [5, 10, 20, 50];
+const PAGE_OPTION_MOCK_DATA = [5, 10, 20, 50];
 
 export {
   MockTableColumns,
   MockTableData,
-  PageOptionMockData,
+  PAGE_OPTION_MOCK_DATA,
   USER_TABLE_COLUMNS,
 };

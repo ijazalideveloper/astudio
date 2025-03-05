@@ -5,17 +5,25 @@ import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Pagination from "@/components/ui/Pagination";
 import Search from "@/components/ui/SearchBar";
-import { PageOptionMockData, USER_TABLE_COLUMNS } from "@/contants/data";
+import { PAGE_OPTION_MOCK_DATA, USER_TABLE_COLUMNS } from "@/contants/data";
 import useFilters from "@/hooks/useFilters";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
-import { fetchUsersThunk, setSkip } from "@/redux/features/users/usersSlice";
+import {
+  fetchUsersThunk,
+  setSkip,
+  setLimit,
+  setClientSearchTerm,
+} from "@/redux/features/users/usersSlice";
 import usePagination from "@/hooks/usePagination";
 import { MAX_PAGE_SIZE } from "@/utils/default";
+import Filters from "@/components/ui/Filters";
 
 export default function Users() {
   const dispatch = useAppDispatch();
-  const { users, loading } = useAppSelector((state) => state.users);
+  const { users, loading, clientSearchTerm } = useAppSelector(
+    (state) => state.users
+  );
 
   const { total, limit, skip, handlePageChange } = usePagination();
 
@@ -31,6 +39,14 @@ export default function Users() {
     searchTerm: "",
     pageSize: MAX_PAGE_SIZE,
   });
+
+  const handleLimitChange = (newLimit: number) => {
+    dispatch(setLimit(newLimit));
+  };
+
+  const handleClientSearch = (term: string) => {
+    dispatch(setClientSearchTerm(term));
+  };
 
   console.log("Users Response", users);
 
@@ -68,20 +84,19 @@ export default function Users() {
           placeholder="Filter by Gender"
         />
       </div>
-      <div className="flex mb-[20px] justify-between">
-        <Dropdown
-          id="pageSize"
-          label="Page Size"
-          options={PageOptionMockData}
-          value={filters.pageSize}
-          onChange={(value) => onFilterChange("pageSize", value)}
-        />
-        <Search onSearch={onClientSearch} />
-      </div>
+      <Filters
+        pageSizeOptions={PAGE_OPTION_MOCK_DATA}
+        currentPageSize={limit}
+        onPageSizeChange={handleLimitChange}
+        onClientSearch={handleClientSearch}
+      >
+        Page Specific Components
+      </Filters>
       <DataTable
         columns={USER_TABLE_COLUMNS}
         data={users}
         isLoading={loading}
+        clientSearchTerm={clientSearchTerm}
       />
       <Pagination
         total={total}
