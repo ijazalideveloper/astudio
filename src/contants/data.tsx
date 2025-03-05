@@ -44,6 +44,27 @@ const MockTableData = [
   },
 ];
 
+const USER_TABLE_COLUMNS = [
+  { id: "id", label: "ID" },
+  { id: "firstName", label: "First Name" },
+  { id: "lastName", label: "Last Name" },
+  { id: "age", label: "Age" },
+  { id: "gender", label: "Gender" },
+  { id: "email", label: "Email" },
+  { id: "username", label: "Username" },
+  { id: "phone", label: "Phone" },
+  { id: "bloodGroup", label: "Blood Group" },
+  { id: "birthDate", label: "Birth Date" },
+  { id: "height", label: "Height" },
+  { id: "weight", label: "Weight" },
+  { id: "eyeColor", label: "Eye Color" },
+];
+
 const PageOptionMockData = [5, 10, 20];
 
-export { MockTableColumns, MockTableData, PageOptionMockData };
+export {
+  MockTableColumns,
+  MockTableData,
+  PageOptionMockData,
+  USER_TABLE_COLUMNS,
+};

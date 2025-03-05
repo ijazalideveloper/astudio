@@ -5,10 +5,22 @@ import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Pagination from "@/components/ui/Pagination";
 import Search from "@/components/ui/SearchBar";
-import { PageOptionMockData } from "@/contants/data";
+import { PageOptionMockData, USER_TABLE_COLUMNS } from "@/contants/data";
 import useFilters from "@/hooks/useFilters";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useEffect } from "react";
+import { fetchUsersThunk } from "@/redux/features/users/usersSlice";
 
 export default function Users() {
+  const dispatch = useAppDispatch();
+  const { users, total, skip, limit, loading } = useAppSelector(
+    (state) => state.users
+  );
+
+  useEffect(() => {
+    dispatch(fetchUsersThunk({ skip, limit }));
+  }, [dispatch, skip, limit]);
+
   const { filters, onFilterChange, onClientSearch } = useFilters({
     firstName: "",
     lastName: "",
@@ -17,6 +29,8 @@ export default function Users() {
     searchTerm: "",
     pageSize: 5,
   });
+
+  console.log("Users Response", users);
 
   return (
     <Layout>
@@ -62,7 +76,11 @@ export default function Users() {
         />
         <Search onSearch={onClientSearch} />
       </div>
-      <DataTable></DataTable>
+      <DataTable
+        columns={USER_TABLE_COLUMNS}
+        data={users}
+        isLoading={loading}
+      />
       <Pagination></Pagination>
     </Layout>
   );

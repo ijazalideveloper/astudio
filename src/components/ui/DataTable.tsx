@@ -1,34 +1,66 @@
-import { MockTableColumns, MockTableData } from "@/contants/data";
 import React from "react";
 
-const DataTable: React.FC = () => {
+interface Column {
+  id: string;
+  label: string;
+  render?: (value: any) => React.ReactNode;
+}
+
+interface DataTableProps {
+  columns: Column[];
+  data: any[];
+  isLoading: boolean;
+}
+
+const DataTable: React.FC<DataTableProps> = ({ columns, data, isLoading }) => {
+  if (isLoading) {
+    return (
+      <div className="table-container">
+        <div className="flex justify-center items-center p-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-custom-black"></div>
+            <p className="mt-2">Loading...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="table-container">
+        <div className="flex justify-center items-center p-8">
+          <p>No data found</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-x-auto container mx-auto ">
-      <table className="min-w-full border border-gray-300">
+      <table className="w-full border border-gray-300">
         <thead className="bg-gray-200">
           <tr>
-            {MockTableColumns.map((column) => (
-              <th key={column} className="border p-2 text-left">
-                {column}
+            {columns.map((column) => (
+              <th key={column?.id} className="border p-2 text-left">
+                {column?.label}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {MockTableData.map((row) => (
-            <tr key={row.id} className="border-b">
-              <td className="border p-2">{row.id}</td>
-              <td className="border p-2">{row.firstName}</td>
-              <td className="border p-2">{row.lastName}</td>
-              <td className="border p-2">{row.age}</td>
-              <td className="border p-2">{row.gender}</td>
-              <td className="border p-2">{row.email}</td>
-              <td className="border p-2">{row.phone}</td>
-              <td className="border p-2">{row.username}</td>
-              <td className="border p-2">{row.birthDate}</td>
-              <td className="border p-2">{row.bloodGroup}</td>
-              <td className="border p-2">{row.height}</td>
-              <td className="border p-2">{row.weight}</td>
+          {data.map((row, rowIndex) => (
+            <tr key={row.id || rowIndex} className="table-row border-b">
+              {columns.map((column) => (
+                <td
+                  key={`${row.id || rowIndex}-${column.id}`}
+                  className="table-cell border p-2"
+                >
+                  {column.render
+                    ? column.render(row[column.id])
+                    : String(row[column.id] || "")}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
