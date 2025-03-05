@@ -14,31 +14,24 @@ import {
   setSkip,
   setLimit,
   setClientSearchTerm,
+  setFilters,
 } from "@/redux/features/users/usersSlice";
 import usePagination from "@/hooks/usePagination";
 import { MAX_PAGE_SIZE } from "@/utils/default";
 import Filters from "@/components/ui/Filters";
+import UsersFilters from "@/components/users/UsersFilters";
 
 export default function Users() {
   const dispatch = useAppDispatch();
-  const { users, loading, clientSearchTerm } = useAppSelector(
+  const { users, loading, clientSearchTerm, filters } = useAppSelector(
     (state) => state.users
   );
 
   const { total, limit, skip, handlePageChange } = usePagination();
 
   useEffect(() => {
-    dispatch(fetchUsersThunk({ skip, limit }));
-  }, [dispatch, skip, limit]);
-
-  const { filters, onFilterChange, onClientSearch } = useFilters({
-    firstName: "",
-    lastName: "",
-    age: "",
-    gender: "",
-    searchTerm: "",
-    pageSize: MAX_PAGE_SIZE,
-  });
+    dispatch(fetchUsersThunk({ skip, limit, filters }));
+  }, [dispatch, skip, limit, filters]);
 
   const handleLimitChange = (newLimit: number) => {
     dispatch(setLimit(newLimit));
@@ -48,47 +41,23 @@ export default function Users() {
     dispatch(setClientSearchTerm(term));
   };
 
+  const handleFilterChange = (newFilters: typeof filters) => {
+    dispatch(setFilters(newFilters));
+  };
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold mb-[20px]">User Page</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-[15px]">
-        <Input
-          id="firstName"
-          label="First Name"
-          value={filters.firstName || ""}
-          onChange={(value) => onFilterChange("firstName", value)}
-          placeholder="Filter by First Name"
-        />
-        <Input
-          id="lastName"
-          label="Last Name"
-          value={filters.lastName || ""}
-          onChange={(value) => onFilterChange("lastName", value)}
-          placeholder="Filter by Last Name"
-        />
-        <Input
-          id="age"
-          label="Age"
-          value={filters.age || ""}
-          onChange={(value) => onFilterChange("age", value)}
-          placeholder="Filter by Age"
-        />
-        <Input
-          id="gender"
-          label="Gender"
-          value={filters.gender || ""}
-          onChange={(value) => onFilterChange("gender", value)}
-          placeholder="Filter by Gender"
-        />
-      </div>
       <Filters
         pageSizeOptions={PAGE_OPTION_MOCK_DATA}
         currentPageSize={limit}
         onPageSizeChange={handleLimitChange}
         onClientSearch={handleClientSearch}
       >
-        Page Specific Components
+        <UsersFilters
+          onFilterChange={handleFilterChange}
+          currentFilters={filters}
+        />
       </Filters>
       <DataTable
         columns={USER_TABLE_COLUMNS}

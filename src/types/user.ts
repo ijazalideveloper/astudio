@@ -21,3 +21,10 @@ export interface UsersResponse {
   skip: number;
   limit: number;
 }
+
+export interface UsersFilters {
+  firstName?: string;
+  lastName?: string;
+  age?: string;
+  gender?: string;
+}

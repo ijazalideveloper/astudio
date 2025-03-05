@@ -60,7 +60,7 @@ const DataTable: React.FC<DataTableProps> = ({
   return (
     <div className="overflow-x-auto container mx-auto ">
       <table className="w-full border border-gray-300">
-        <thead className="bg-gray-200">
+        <thead className="bg-[#c0e3e5]">
           <tr>
             {columns.map((column) => (
               <th key={column?.id} className="border p-2 text-left">
@@ -71,7 +71,7 @@ const DataTable: React.FC<DataTableProps> = ({
         </thead>
         <tbody>
           {filteredData.map((row, rowIndex) => (
-            <tr key={row.id || rowIndex} className="table-row border-b">
+            <tr key={row.id || rowIndex} className="table-row border-b border p-2 hover:bg-[#ebebeb]">
               {columns.map((column) => (
                 <td
                   key={`${row.id || rowIndex}-${column.id}`}

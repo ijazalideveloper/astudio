@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { User, UsersResponse } from "../../../types/user";
+import { User, UsersResponse, UsersFilters } from "../../../types/user";
 import { fetchUsers } from "../../../services/usersService";
 import { MAX_PAGE_SIZE } from "@/utils/default";
 
@@ -11,6 +11,7 @@ interface UsersState {
   loading: boolean;
   error: string | null;
   clientSearchTerm: string;
+  filters: UsersFilters;
 }
 
 const initialState: UsersState = {
@@ -21,12 +22,13 @@ const initialState: UsersState = {
   loading: false,
   error: null,
   clientSearchTerm: "",
+  filters: {},
 };
 
 export const fetchUsersThunk = createAsyncThunk(
   "users/fetchUsers",
-  async ({ skip, limit }: { skip: number; limit: number }) => {
-    const response = await fetchUsers(skip, limit);
+  async ({ skip, limit,filters }: { skip: number; limit: number, filters?: UsersFilters }) => {
+    const response = await fetchUsers(skip, limit, filters);
     return response;
   }
 );
@@ -53,6 +55,10 @@ const usersSlice = createSlice({
     setClientSearchTerm: (state, action: PayloadAction<string>) => {
       state.clientSearchTerm = action.payload;
     },
+    setFilters: (state, action: PayloadAction<UsersFilters>) => {
+      state.filters = action.payload;
+      state.skip = 0;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,6 +83,6 @@ const usersSlice = createSlice({
   },
 });
 
-export const { resetUsers, setSkip, setLimit, setClientSearchTerm } =
+export const { resetUsers, setSkip, setLimit, setClientSearchTerm, setFilters } =
   usersSlice.actions;
 export default usersSlice.reducer;
