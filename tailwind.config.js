@@ -12,7 +12,7 @@ module.exports = {
           yellow: '#fdc936',
         },
         fontFamily: {
-          sans: ['Neutra Text', 'sans-serif'],
+          neutra: ['Neutra Text', 'sans-serif'],
         },
       },
     },
