@@ -13,7 +13,7 @@ export default function Header() {
             </li>
             <li>
               <Link href="/products" className="text-white hover:text-gray-200">
-                Products Page
+                Product Page
               </Link>
             </li>
           </ul>
