@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Product, ProductsResponse } from '../../../types/product';
+import { Product, ProductsResponse, ProductsFilters } from '../../../types/product';
 import { fetchProducts } from '../../../services/productsService';
 
 interface ProductsState {
@@ -10,6 +10,8 @@ interface ProductsState {
   loading: boolean;
   error: string | null;
   clientSearchTerm: string;
+  filters: ProductsFilters;
+  activeCategory: string;
 }
 
 const initialState: ProductsState = {
@@ -20,6 +22,8 @@ const initialState: ProductsState = {
   loading: false,
   error: null,
   clientSearchTerm: '',
+  filters: {},
+  activeCategory: 'ALL',
 };
 
 export const fetchProductsThunk = createAsyncThunk(
@@ -27,11 +31,15 @@ export const fetchProductsThunk = createAsyncThunk(
   async ({ 
     skip, 
     limit, 
+    filters,
+    category 
   }: { 
     skip: number; 
     limit: number; 
+    filters?: ProductsFilters;
+    category?: string;
   }) => {
-    const response = await fetchProducts(skip, limit);
+    const response = await fetchProducts(skip, limit, filters, category);
     return response;
   }
 );
@@ -49,6 +57,14 @@ const productsSlice = createSlice({
     },
     setClientSearchTerm: (state, action: PayloadAction<string>) => {
       state.clientSearchTerm = action.payload;
+    },
+    setFilters: (state, action: PayloadAction<ProductsFilters>) => {
+      state.filters = action.payload;
+      state.skip = 0; // Reset to first page when changing filters
+    },
+    setActiveCategory: (state, action: PayloadAction<string>) => {
+      state.activeCategory = action.payload;
+      state.skip = 0; // Reset to first page when changing category
     },
   },
   extraReducers: (builder) => {
@@ -75,5 +91,7 @@ export const {
   setLimit, 
   setSkip,
   setClientSearchTerm,
+  setFilters,
+  setActiveCategory
 } = productsSlice.actions;
 export default productsSlice.reducer;

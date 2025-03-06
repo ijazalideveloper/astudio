@@ -88,10 +88,16 @@ const PRODUCT_TABLE_COLUMNS = [
   { id: 'description', label: 'Description' },
 ];
 
+const TAB_LIST = [
+  { id: 'ALL', label: 'ALL' },
+  { id: 'laptops', label: 'Laptops' },
+];
+
 export {
   MockTableColumns,
   MockTableData,
   PAGE_OPTION_MOCK_DATA,
   USER_TABLE_COLUMNS,
-  PRODUCT_TABLE_COLUMNS
+  PRODUCT_TABLE_COLUMNS,
+  TAB_LIST
 };
