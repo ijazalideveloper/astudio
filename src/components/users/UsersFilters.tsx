@@ -86,8 +86,8 @@ const UsersFilters: React.FC<UsersFiltersProps> = ({
       />
       <Input
         id="age"
-        label="Last Name"
-        value={lastName}
+        label="Age"
+        value={age}
         onChange={(value) => handleAgeChange(value)}
         placeholder="Filter by age"
       />

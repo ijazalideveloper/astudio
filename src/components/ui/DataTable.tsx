@@ -21,7 +21,7 @@ const DataTable: React.FC<DataTableProps> = ({
 }) => {
 
   const filteredData = clientSearchTerm
-    ? data.filter((item) => {
+    ? data?.filter((item) => {
         return Object.values(item).some((value) => {
           if (value === null || value === undefined) return false;
           if (typeof value === 'object') {
