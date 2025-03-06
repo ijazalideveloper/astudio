@@ -27,7 +27,7 @@ export default function Users() {
     (state) => state.users
   );
 
-  const { total, limit, skip, handlePageChange } = usePagination();
+  const { total, limit, skip, handlePageChange } = usePagination("users");
 
   useEffect(() => {
     dispatch(fetchUsersThunk({ skip, limit, filters }));

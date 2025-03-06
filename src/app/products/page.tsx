@@ -26,7 +26,7 @@ export default function ProductsPage() {
     (state) => state.products
   );
 
-  const { total, limit, skip, handlePageChange } = usePagination();
+  const { total, limit, skip, handlePageChange } = usePagination("products");
 
   useEffect(() => {
     dispatch(fetchProductsThunk({ skip, limit }));
