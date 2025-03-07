@@ -27,7 +27,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         type={type}
-        className="w-full border border-gray-300 p-2 rounded"
+        className="input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}

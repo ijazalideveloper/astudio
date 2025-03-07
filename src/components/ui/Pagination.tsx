@@ -37,20 +37,20 @@ const Pagination: React.FC<PaginationProps> = ({
     pageNumbers.push(i);
   }
   return (
-    <div className="flex justify-between items-center mt-4">
-      <span className="text-sm text-gray-700">
+    <div className="pagination-container">
+      <div className="text-sm text-custom-black">
         Showing {skip + 1}-{Math.min(skip + limit, total)} of {total} items
-      </span>
-      <div className="flex space-x-1">
+        </div>
+        <div className="flex space-x-1">
         <button
-          className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+          className="btn px-2 py-1 bg-custom-grey disabled:opacity-50"
           onClick={() => onPageChange(1)}
           disabled={currentPage === 1}
         >
           <ChevronDoubleLeftIcon className="h-4 w-4 text-gray-700" />
         </button>
         <button
-          className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+          className="btn px-2 py-1 bg-custom-grey disabled:opacity-50"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -59,10 +59,8 @@ const Pagination: React.FC<PaginationProps> = ({
         {pageNumbers.map((number) => (
           <button
             key={number}
-            className={`px-3 py-1 rounded ${
-              currentPage === number
-                ? "bg-blue-500 text-white "
-                : "bg-gray-200 text-gray-700"
+            className={`btn px-3 py-1 ${
+              currentPage === number ? 'bg-custom-blue' : 'bg-custom-grey'
             }`}
             onClick={() => onPageChange(number)}
           >
@@ -71,14 +69,14 @@ const Pagination: React.FC<PaginationProps> = ({
         ))}
 
         <button
-          className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+          className="btn px-2 py-1 bg-custom-grey disabled:opacity-50"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           <ChevronRightIcon className="h-4 w-4 text-gray-700" />
         </button>
         <button
-          className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+          className="btn px-2 py-1 bg-custom-grey disabled:opacity-50"
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage === totalPages}
         >

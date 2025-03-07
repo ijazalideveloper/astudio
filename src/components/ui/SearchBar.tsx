@@ -31,10 +31,10 @@ const Search: React.FC<SearchProps> = ({
         />
       )}
       <button
-        className="p-2 rounded-full bg-gray-200 hover:bg-opacity-80"
-        onClick={() => setShowSearch(!showSearch)}
-      >
-        <MagnifyingGlassIcon className="h-5 w-5 text-gray-700" />
+          className="p-2 rounded-full bg-custom-grey hover:bg-opacity-80"
+          onClick={() => setShowSearch(!showSearch)}
+        >
+        <MagnifyingGlassIcon className="h-5 w-5 text-custom-black" />
       </button>
     </div>
   );

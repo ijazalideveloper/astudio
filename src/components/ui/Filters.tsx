@@ -19,7 +19,7 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <div className="filters-container">
-      <div className="flex items-center space-x-2 mb-[20px] justify-between">
+      <div className="flex items-center space-x-2">
         <Dropdown
           id="pageSize"
           label="Page Size"

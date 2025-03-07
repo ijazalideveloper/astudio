@@ -18,13 +18,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div className="flex items-center">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium mr-[5px]">
+        <label htmlFor="pageSize" className="text-sm font-medium">
           {label}
         </label>
       )}
       <select
         id={id}
-        className="border border-gray-300 p-2 rounded"
+        className="input"
         value={value}
         onChange={(e) =>
           onChange(

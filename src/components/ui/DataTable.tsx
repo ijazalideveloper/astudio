@@ -58,24 +58,24 @@ const DataTable: React.FC<DataTableProps> = ({
   }
 
   return (
-    <div className="overflow-x-auto container mx-auto ">
-      <table className="w-full border border-gray-300">
-        <thead className="bg-[#c0e3e5]">
+    <div className="table-container">
+      <table className="data-table">
+        <thead className="table-header">
           <tr>
             {columns.map((column) => (
-              <th key={column?.id} className="border p-2 text-left">
+              <th key={column?.id} className="table-header-cell">
                 {column?.label}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table-body">
           {filteredData.map((row, rowIndex) => (
-            <tr key={row.id || rowIndex} className="table-row border-b border p-2 hover:bg-[#ebebeb]">
+            <tr key={row.id || rowIndex} className="table-row">
               {columns.map((column) => (
                 <td
                   key={`${row.id || rowIndex}-${column.id}`}
-                  className="table-cell border p-2"
+                  className="table-cell"
                 >
                   {column.render
                     ? column.render(row[column.id])
