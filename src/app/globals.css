@@ -1,23 +1,6 @@
-@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: "Neutra Text";
-  src: url("/fonts/NeutraText-Book.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Neutra Text";
-  src: url("/fonts/NeutraText-Bold.otf") format("opentype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: "Neutra Text";
@@ -35,25 +18,83 @@
   font-display: swap;
 }
 
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 235, 235, 235;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Neutra Text", sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  font-family: 'Neutra Text', sans-serif;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded font-medium;
+  }
+  
+  .btn-primary {
+    @apply bg-custom-blue text-custom-black hover:bg-opacity-80;
+  }
+  
+  .btn-secondary {
+    @apply bg-custom-yellow text-custom-black hover:bg-opacity-80;
+  }
+  
+  .input {
+    @apply px-3 py-2 border border-custom-grey rounded focus:outline-none focus:ring-2 focus:ring-custom-blue;
+  }
+  
+  .table-container {
+    @apply w-full overflow-x-auto bg-white rounded-lg shadow;
+  }
+  
+  .data-table {
+    @apply min-w-full divide-y divide-custom-grey;
+  }
+  
+  .table-header {
+    @apply bg-custom-grey;
+  }
+  
+  .table-header-cell {
+    @apply px-6 py-3 text-left text-xs font-medium text-custom-black uppercase tracking-wider;
+  }
+  
+  .table-body {
+    @apply bg-white divide-y divide-custom-grey;
+  }
+  
+  .table-row {
+    @apply hover:bg-custom-grey;
+  }
+  
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-custom-black;
+  }
+  
+  .filters-container {
+    @apply flex flex-col md:flex-row gap-4 mb-6 p-4 bg-white rounded-lg shadow;
+  }
+  
+  .pagination-container {
+    @apply flex justify-between items-center mt-4 p-4 bg-white rounded-lg shadow;
+  }
+  
+  .tabs-container {
+    @apply flex space-x-1 mb-6;
+  }
+  
+  .tab {
+    @apply px-4 py-2 text-custom-black font-medium rounded-t-lg;
+  }
+  
+  .tab-active {
+    @apply bg-white border-b-2 border-custom-blue;
+  }
+  
+  .tab-inactive {
+    @apply bg-custom-grey hover:bg-opacity-80;
+  }
 }

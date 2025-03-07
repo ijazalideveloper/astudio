@@ -1,18 +1,20 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        black: "#322625",
-        grey: "#ebebeb",
-        blue: "#c0e3e5",
-        yellow: "#fdc936",
+        'custom-black': '#322625',
+        'custom-grey': '#ebebeb',
+        'custom-blue': '#c0e3e5',
+        'custom-yellow': '#fdc936',
       },
       fontFamily: {
-        neutra: ["Neutra Text", "sans-serif"],
+        neutra: ['Neutra Text', 'sans-serif'],
       },
     },
   },
