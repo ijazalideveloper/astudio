@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Demo
+You can check out the live demo here:  
+[Astudio Silk Demo](https://astudio-silk.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:
@@ -34,3 +38,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/c02da703-666d-47f9-a28a-14b8a033081a" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/486deef0-7eb4-42dd-b5ae-1fc0197f1c37" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/8d759074-2726-4bfd-90c5-08ba95f62c9a" />
+
+
+
